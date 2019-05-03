@@ -1,6 +1,6 @@
 {
   "name": "controlli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A outer layer to you express API endpoints to handle response and eceptions for you",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
