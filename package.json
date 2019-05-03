@@ -1,0 +1,40 @@
+{
+  "name": "controlli",
+  "version": "1.0.0",
+  "description": "A outer layer to you express API endpoints to handle response and eceptions for you",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "npm run build && jasmine-ts --config=jasmine.json",
+    "testWithCoverage": "nyc -r lcov -e .ts -x \"*.spec.ts\" jasmine-ts --config=jasmine.json && nyc report",
+    "pub": "npm run build && npm version patch && npm publish && git push"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukegeiken4/controlli.git"
+  },
+  "keywords": [
+    "express",
+    "api",
+    "response"
+  ],
+  "author": "luke geiken",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lukegeiken4/controlli/issues"
+  },
+  "homepage": "https://github.com/lukegeiken4/controlli#readme",
+  "devDependencies": {
+    "@types/jasmine": "^3.3.12",
+    "jasmine": "^3.4.0",
+    "jasmine-ts": "^0.3.0",
+    "nyc": "^14.0.0",
+    "ts-node": "^8.1.0",
+    "typescript": "^3.4.5"
+  },
+  "dependencies": {
+    "@types/express": "^4.16.1",
+    "express": "^4.16.4"
+  }
+}
