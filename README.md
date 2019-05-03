@@ -2,7 +2,8 @@
 A layer for your express controllers that handle responses and query parameters for you.
 
 ## Sections
-- [Install](#install)  
+- [Install](#install)
+- [Example Project](#example)  
 - [ErrorModels](#models)  
 - [HandleResponse()](#response)  
 - [HandleParams()](#params)  
@@ -12,6 +13,10 @@ A layer for your express controllers that handle responses and query parameters 
 ```console
 npm i controlli
 ```
+
+### <a name="example"></a> Example Project
+I setup a starter Typescript Express API project.
+Check it out here: https://github.com/lukegeiken4/express-typescript-starter
 
 ### <a name="models"></a> Error Models
 Controlli introduces some models to help with error and response handling.
