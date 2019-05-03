@@ -3,29 +3,18 @@ A layer for your express controllers that handle responses and query parameters 
 
 ## Sections
 - [Install](#install)
-- [Example Project](#example)  
-- [ErrorModels](#models)  
-- [HandleResponse()](#response)  
-- [HandleParams()](#params)  
+- [Usage](#usage)
+  - [HandleResponse()](#response)  
+  - [HandleParams()](#params)
+  - [Error Models](#models)  
+- [Example Project Using Controlli](#example)  
 - [License](#license)  
 
-### <a name="install"></a> Install
+## <a name="install"></a> Install
 ```console
 npm i controlli
 ```
-
-### <a name="example"></a> Example Project
-I setup a starter Typescript Express API project.
-Check it out here: https://github.com/lukegeiken4/express-typescript-starter
-
-### <a name="models"></a> Error Models
-Controlli introduces some models to help with error and response handling.
-- ArgumentNullError
-- ArgumentError
-- NotFoundError
-
-You are able to throw these errors at any point in the code.
-As long as they are not caught in your code, Controlli will handle an error response for you.
+## <a name="usage"></a> Usage
 
 ### <a name="response"></a> HandleResponse
 HandleResponse is a wrapper function to toss in your controller logic and subsequent service/repository/data provider/etc logic into.
@@ -100,6 +89,20 @@ params = {
 * optBool and optInt will be here if present in req.query
 */
 ~~~~
+
+### <a name="models"></a> Error Models
+Controlli introduces some models to help with error and response handling.
+- ArgumentNullError
+- ArgumentError
+- NotFoundError
+
+You are able to throw these errors at any point in the code.
+As long as they are not caught in your code, Controlli will handle an error response for you.
+
+## <a name="example"></a> Example Project Using Controlli
+I setup a starter Typescript Express API project that uses Controlli's functionality.
+
+Check it out here: https://github.com/lukegeiken4/express-typescript-starter
 
 ## <a name="license"></a> License
  
