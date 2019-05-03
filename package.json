@@ -7,8 +7,8 @@
   "scripts": {
     "build": "tsc",
     "test": "npm run build && jasmine-ts --config=jasmine.json",
-    "testWithCoverage": "npm run build &&  nyc -r lcov -e .ts -x \"*.spec.ts\" jasmine-ts --config=jasmine.json && nyc report",
-    "pub": "npm version patch && npm publish"
+    "testWithCoverage": "npm run build && nyc -r lcov -e .ts -x \"*.spec.ts\" jasmine-ts --config=jasmine.json && nyc report",
+    "pub": "npm run build && npm version patch && npm publish"
   },
   "repository": {
     "type": "git",
