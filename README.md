@@ -49,9 +49,11 @@ public exampleControllerEndpoint(req: Request, res: Response) {
 
 ### <a name="params"></a> HandleParams
 HandleParams is a function to help handle your controller query params. Express has your query params come in as strings, this function will transform them into their type'd counter part. 
+
 Ex: "10" => 10, "true" => true
 
 If your params are meant to be booleans or ints and are not, it will throw the associated [Error](##Models).
+
 **BONUS:** If you are using Controlli's HandleResponse() with this, the error response will all be handled by itself, no need to you to be involved.
 
 ~~~~
@@ -75,7 +77,7 @@ public exampleControllerEndpoint(req: Request, res: Response) {
 
 **Example**
 ~~~~
-// req.query = { 'reqStr': 'fake-string', 'reqBool': 'fake-bool', 'reqInt': 'fake-int' }
+// req.query = { 'reqStr': 'fake-string', 'reqBool': 'true', 'reqInt': '10' }
 let params = HandleQueryParams(
      req,
      ['reqStr'],
@@ -88,9 +90,10 @@ let params = HandleQueryParams(
 /**
 params = {
     reqStr: 'fake-string',
-    reqBool: 'fake-bool',
-    reqInt: 'fake-int'
-} // optBool and optInt will be here if present in req.query
+    reqBool: true,
+    reqInt: 10
+} 
+* optBool and optInt will be here if present in req.query
 */
 ~~~~
 
