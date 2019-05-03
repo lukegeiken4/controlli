@@ -1,14 +1,14 @@
 {
   "name": "controlli",
   "version": "1.0.1",
-  "description": "A outer layer to you express API endpoints to handle response and eceptions for you",
+  "description": "A handler layer to express controllers. Helping out with reponse and param handling.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "npm run build && jasmine-ts --config=jasmine.json",
-    "testWithCoverage": "nyc -r lcov -e .ts -x \"*.spec.ts\" jasmine-ts --config=jasmine.json && nyc report",
-    "pub": "npm run build && npm version patch && npm publish && git push"
+    "testWithCoverage": "npm run build &&  nyc -r lcov -e .ts -x \"*.spec.ts\" jasmine-ts --config=jasmine.json && nyc report",
+    "pub": "npm version patch && npm publish"
   },
   "repository": {
     "type": "git",
@@ -17,10 +17,14 @@
   "keywords": [
     "express",
     "api",
-    "response"
+    "response",
+    "parameters",
+    "handler",
+    "params",
+    "controller"
   ],
   "author": "luke geiken",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/lukegeiken4/controlli/issues"
   },
