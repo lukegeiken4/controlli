@@ -2,23 +2,19 @@
 A layer for your express controllers that handle responses and query parameters for you.
 
 ## Sections
-[Install](###Install)
+- [Install](#install)  
+- [Models](#models)  
+- [HandleResponse](#response)  
+- [HandleParams](#params)  
+- [License](#license)  
 
-[Models](###Models)
-
-[HandleResponse](###HandleResponse)
-
-[HandleParams](###HandleParams)
-
-[HandleParams](##License)
-
-
-### Install
+### <a name="install"></a> Install
 ```console
 npm i controlli
+npm install @types/controlli // If using this npm module in typescript
 ```
 
-### Models
+### <a name="models"></a> Models
 Controlli introduces some models to help with error and response handling.
 - ArgumentNullError
 - ArgumentError
@@ -27,7 +23,7 @@ Controlli introduces some models to help with error and response handling.
 You are able to throw these errors at any point in the code.
 As long as they are not caught in your code, Controlli will handle an error response for you.
 
-### HandleResponse
+### <a name="response"></a> HandleResponse
 HandleResponse is a wrapper function to toss in your controller logic and subsequent service/repository/data provider/etc logic into.
 It handle sending back correct responses and their status codes.
 
@@ -51,7 +47,7 @@ public exampleControllerEndpoint(req: Request, res: Response) {
 }
 ~~~~
 
-### HandleParams
+### <a name="params"></a> HandleParams
 HandleParams is a function to help handle your controller query params. Express has your query params come in as strings, this function will transform them into their type'd counter part. 
 Ex: "10" => 10, "true" => true
 
@@ -98,7 +94,7 @@ params = {
 */
 ~~~~
 
-## License
+## <a name="license"></a> License
  
 The MIT License (MIT)
 
