@@ -52,7 +52,7 @@ HandleParams is a function to help handle your controller query params. Express 
 
 Ex: "10" => 10, "true" => true
 
-If your params are meant to be booleans or ints and are not, it will throw the associated [Error](##Models).
+If your params are meant to be booleans or ints and are not, it will throw the associated [Error](#models).
 
 **BONUS:** If you are using Controlli's HandleResponse() with this, the error response will all be handled by itself, no need to you to be involved.
 
