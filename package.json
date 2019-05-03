@@ -1,6 +1,6 @@
 {
   "name": "controlli",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A handler layer to express controllers. Helping out with reponse and param handling.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
