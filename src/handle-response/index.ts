@@ -1,5 +1,11 @@
 import { Response } from 'express';
 
+/**
+ * Response/Error handler for your endpoint logic
+ * @param res Express Response
+ * @param operation Promise that handles data response when resolved
+ * @returns Promise<boolean> if the response returns data or error response
+ */
 export function HandleResponse(
     res: Response,
     operation: Promise<any>): Promise<boolean> 

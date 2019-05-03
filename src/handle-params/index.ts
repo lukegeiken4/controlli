@@ -12,6 +12,7 @@ import {
  * @param requiredNumParams Required number parameters
  * @param optionalBoolParams Optional boolean parameters
  * @param optionalNumParams Optional number parameters
+ * @returns Query params transformed to their correct type
  */
 export function HandleQueryParams(
     req: Request,
