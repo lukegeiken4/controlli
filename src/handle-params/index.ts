@@ -4,19 +4,28 @@ import {
     ArgumentError 
 } from '../models/errors';
 
+/**
+ * Handles the GET query parameters coming with the request
+ * @param req Express request to handle
+ * @param requiredStrParams Required string parameters
+ * @param requiredBoolParams Required boolean parameters
+ * @param requiredNumParams Required number parameters
+ * @param optionalBoolParams Optional boolean parameters
+ * @param optionalNumParams Optional number parameters
+ */
 export function HandleQueryParams(
     req: Request,
     requiredStrParams: string[],
     requiredBoolParams: string[],
-    requiredIntParams: string[],
+    requiredNumParams: string[],
     optionalBoolParams: string[] = [],
-    optionalIntParams: string[] = []): any
+    optionalNumParams: string[] = []): any
 {
     var params: {} = req.query;
 
     // Check to make sure required params are present
     let requiredParams: string[] = [];
-    requiredParams = requiredParams.concat(requiredStrParams, requiredBoolParams, requiredIntParams)
+    requiredParams = requiredParams.concat(requiredStrParams, requiredBoolParams, requiredNumParams)
         .filter((item: any, i: any, arr: any) => item && !!arr && arr.indexOf(item) === i);
 
     for(let key in requiredParams)
@@ -46,7 +55,7 @@ export function HandleQueryParams(
 
     // Check/Convert the required INT vals
     let numParams: string[] = [];
-    numParams = numParams.concat(requiredIntParams, optionalIntParams)
+    numParams = numParams.concat(requiredNumParams, optionalNumParams)
         .filter((item: any, i: any, arr: any) => item && !!arr && arr.indexOf(item) === i);
     numParams = filterObject(params, numParams);
     for (let numParam in numParams) {

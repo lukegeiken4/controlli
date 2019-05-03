@@ -47,8 +47,8 @@ public exampleControllerEndpoint(req: Request, res: Response) {
 }
 ~~~~
 
-### <a name="params"></a> HandleParams
-HandleParams is a function to help handle your controller query params. Express has your query params come in as strings, this function will transform them into their type'd counter part. 
+### <a name="params"></a> HandleQueryParams
+HandleQueryParams is a function to help handle your controller query params. Express has your query params come in as strings, this function will transform them into their type'd counter part. 
 
 Ex: "10" => 10, "true" => true
 

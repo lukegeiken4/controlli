@@ -127,91 +127,91 @@ describe("Method HandleQueryParams:", () => {
                         req,
                         [],
                         [],
-                        ['req-int-param']);
+                        ['req-num-param']);
                 }
             });
 
             it("should throw ArgumentNullError", () => {
-            expect(() => { test() }).toThrow(new ArgumentNullError('req-int-param'));
+            expect(() => { test() }).toThrow(new ArgumentNullError('req-num-param'));
             });
         });
 
         describe("are present in query", () => {
             beforeEach(() => {
-                req.query['req-int-param'] = '10';
+                req.query['req-num-param'] = '10';
                 test = () => { 
                     return HandleQueryParams(
                         req,
                         [],
                         [],
-                        ['req-int-param']);
+                        ['req-num-param']);
                 }
             });
 
             describe("is valid non-decimal int", () => {
                 beforeEach(() => {
-                    req.query['req-int-param'] = '10';
+                    req.query['req-num-param'] = '10';
                 });
 
                 it("should not throw ArgumentNullError", () => {
-                    expect(() => { test() }).not.toThrow(new ArgumentNullError('req-int-param'));
+                    expect(() => { test() }).not.toThrow(new ArgumentNullError('req-num-param'));
                 });
 
                 it("should return param object correctly", () => {
                     var resp = test();
-                    expect(resp).toEqual({ 'req-int-param': 10 });
+                    expect(resp).toEqual({ 'req-num-param': 10 });
                 });
             });
 
             describe("is valid decimal int", () => {
                 beforeEach(() => {
-                    req.query['req-int-param'] = '10.123';
+                    req.query['req-num-param'] = '10.123';
                 });
 
                 it("should not throw ArgumentNullError", () => {
-                    expect(() => { test() }).not.toThrow(new ArgumentNullError('req-int-param'));
+                    expect(() => { test() }).not.toThrow(new ArgumentNullError('req-num-param'));
                 });
 
                 it("should return param object correctly", () => {
                     var resp = test();
-                    expect(resp).toEqual({ 'req-int-param': 10.123 });
+                    expect(resp).toEqual({ 'req-num-param': 10.123 });
                 });
             });
 
             describe("is valid negative non-decimal int", () => {
                 beforeEach(() => {
-                    req.query['req-int-param'] = '-10';
+                    req.query['req-num-param'] = '-10';
                 });
 
                 it("should not throw ArgumentNullError", () => {
-                    expect(() => { test() }).not.toThrow(new ArgumentNullError('req-int-param'));
+                    expect(() => { test() }).not.toThrow(new ArgumentNullError('req-num-param'));
                 });
 
                 it("should return param object correctly", () => {
                     var resp = test();
-                    expect(resp).toEqual({ 'req-int-param': -10 });
+                    expect(resp).toEqual({ 'req-num-param': -10 });
                 });
             });
 
             describe("is valid negative decimal int", () => {
                 beforeEach(() => {
-                    req.query['req-int-param'] = '-10.123';
+                    req.query['req-num-param'] = '-10.123';
                 });
 
                 it("should not throw ArgumentNullError", () => {
-                    expect(() => { test() }).not.toThrow(new ArgumentNullError('req-int-param'));
+                    expect(() => { test() }).not.toThrow(new ArgumentNullError('req-num-param'));
                 });
 
                 it("should return param object correctly", () => {
                     var resp = test();
-                    expect(resp).toEqual({ 'req-int-param': -10.123 });
+                    expect(resp).toEqual({ 'req-num-param': -10.123 });
                 });
             });
 
             describe("is invalid int", () => {
                 it("should throw ArgumentNullError", () => {
-                    req.query['req-int-param'] = 'non-int';
-                    expect(() => { test() }).toThrow(new ArgumentError('req-int-param', 'Is not a number'));
+                    req.query['req-num-param'] = 'non-int';
+                    expect(() => { test() }).toThrow(new ArgumentError('req-num-param', 'Is not a number'));
                 });
             });
         });
@@ -296,12 +296,12 @@ describe("Method HandleQueryParams:", () => {
                         [],
                         [],
                         [],
-                        ['opt-int-param']);
+                        ['opt-num-param']);
                 }
             });
 
             it("should not throw ArgumentNullError", () => {
-                expect(() => { test() }).not.toThrow(new ArgumentNullError('opt-int-param'));
+                expect(() => { test() }).not.toThrow(new ArgumentNullError('opt-num-param'));
             });
         });
 
@@ -314,74 +314,74 @@ describe("Method HandleQueryParams:", () => {
                         [],
                         [],
                         [],
-                        ['opt-int-param']);
+                        ['opt-num-param']);
                 }
             });
 
             describe("is valid non-decimal int", () => {
                 beforeEach(() => {
-                    req.query['opt-int-param'] = '10';
+                    req.query['opt-num-param'] = '10';
                 });
 
                 it("should not throw ArgumentNullError", () => {
-                    expect(() => { test() }).not.toThrow(new ArgumentNullError('opt-int-param'));
+                    expect(() => { test() }).not.toThrow(new ArgumentNullError('opt-num-param'));
                 });
 
                 it("should return param object correctly", () => {
                     var resp = test();
-                    expect(resp).toEqual({ 'opt-int-param': 10 });
+                    expect(resp).toEqual({ 'opt-num-param': 10 });
                 });
             });
 
             describe("is valid decimal int", () => {
                 beforeEach(() => {
-                    req.query['opt-int-param'] = '10.123';
+                    req.query['opt-num-param'] = '10.123';
                 });
 
                 it("should not throw ArgumentNullError", () => {
-                    expect(() => { test() }).not.toThrow(new ArgumentNullError('opt-int-param'));
+                    expect(() => { test() }).not.toThrow(new ArgumentNullError('opt-num-param'));
                 });
 
                 it("should return param object correctly", () => {
                     var resp = test();
-                    expect(resp).toEqual({ 'opt-int-param': 10.123 });
+                    expect(resp).toEqual({ 'opt-num-param': 10.123 });
                 });
             });
 
             describe("is valid negative non-decimal int", () => {
                 beforeEach(() => {
-                    req.query['opt-int-param'] = '-10';
+                    req.query['opt-num-param'] = '-10';
                 });
 
                 it("should not throw ArgumentNullError", () => {
-                    expect(() => { test() }).not.toThrow(new ArgumentNullError('opt-int-param'));
+                    expect(() => { test() }).not.toThrow(new ArgumentNullError('opt-num-param'));
                 });
 
                 it("should return param object correctly", () => {
                     var resp = test();
-                    expect(resp).toEqual({ 'opt-int-param': -10 });
+                    expect(resp).toEqual({ 'opt-num-param': -10 });
                 });
             });
 
             describe("is valid negative decimal int", () => {
                 beforeEach(() => {
-                    req.query['opt-int-param'] = '-10.123';
+                    req.query['opt-num-param'] = '-10.123';
                 });
 
                 it("should not throw ArgumentNullError", () => {
-                    expect(() => { test() }).not.toThrow(new ArgumentNullError('opt-int-param'));
+                    expect(() => { test() }).not.toThrow(new ArgumentNullError('opt-num-param'));
                 });
 
                 it("should return param object correctly", () => {
                     var resp = test();
-                    expect(resp).toEqual({ 'opt-int-param': -10.123 });
+                    expect(resp).toEqual({ 'opt-num-param': -10.123 });
                 });
             });
 
             describe("is invalid int", () => {
                 it("should throw ArgumentNullError", () => {
-                    req.query['opt-int-param'] = 'non-int';
-                    expect(() => { test() }).toThrow(new ArgumentError('opt-int-param', 'Is not a number'));
+                    req.query['opt-num-param'] = 'non-int';
+                    expect(() => { test() }).toThrow(new ArgumentError('opt-num-param', 'Is not a number'));
                 });
             });
         });
