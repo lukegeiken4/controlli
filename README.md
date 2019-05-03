@@ -1,5 +1,5 @@
 # Controlli
-A layer for your express controllers that handle responses and query parameters for you.
+A handler layer for Express API controllers. Helping out with response/error and param handling.
 
 ## Sections
 - [Install](#install)
