@@ -11,7 +11,6 @@ A layer for your express controllers that handle responses and query parameters 
 ### <a name="install"></a> Install
 ```console
 npm i controlli
-npm install @types/controlli // If using this npm module in typescript
 ```
 
 ### <a name="models"></a> Error Models
