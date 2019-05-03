@@ -3,9 +3,9 @@ A layer for your express controllers that handle responses and query parameters 
 
 ## Sections
 - [Install](#install)  
-- [Models](#models)  
-- [HandleResponse](#response)  
-- [HandleParams](#params)  
+- [ErrorModels](#models)  
+- [HandleResponse()](#response)  
+- [HandleParams()](#params)  
 - [License](#license)  
 
 ### <a name="install"></a> Install
@@ -14,7 +14,7 @@ npm i controlli
 npm install @types/controlli // If using this npm module in typescript
 ```
 
-### <a name="models"></a> Models
+### <a name="models"></a> Error Models
 Controlli introduces some models to help with error and response handling.
 - ArgumentNullError
 - ArgumentError
