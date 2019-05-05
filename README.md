@@ -6,7 +6,7 @@ A handler layer for Express API controllers. Helping out with response/error and
 - [Usage](#usage)
   - [HandleResponse()](#response)  
   - [HandleParams()](#params)
-  - [Error Models](#models)  
+  - [Error Models](#err-models)  
 - [Example Project Using Controlli](#example)  
 - [License](#license)  
 
@@ -45,20 +45,24 @@ HandleQueryParams is a function to help handle your controller query params. Exp
 
 Ex: "10" => 10, "true" => true
 
-If your params are meant to be booleans or ints and are not, it will throw the associated [Error](#models).
+If your params are expected to be booleans or numbers and are not, it will throw the associated [Error](#errmodels).
 
-**BONUS:** If you are using Controlli's HandleResponse() with this, the error response will all be handled by itself, no need to you to be involved.
+**BONUS:** If you are using Controlli's HandleResponse() with this functionality, the error response will all be handled by itself, no need for you to be involved.
 
 ~~~~
+// NOTE: Written in Typescript
 public exampleControllerEndpoint(req: Request, res: Response) {
     HandleResponse(res, new Promise((resolve, reject) => {
+        let expectedParam = new EndpointParams(); 
+        // Go ahead and fill out the associated arrays with your requirements
+        // expectedParam.requiredStrings = [];
+        // expectedParam.requiredBooleans = [];
+        // expectedParam.requiredNumbers = [];
+        // expectedParam.optionalBooleans = [];
+        // expectedParam.optionalNumbers = [];
         let params = HandleQueryParams(
             req,   // Controller Request
-            [],    // Required query params: string
-            [],    // Required query params: boolean
-            [],    // Required query params: number
-            [],    // Optional query params: boolean
-            []     // Optional query params: number
+            expectedParam
         );
         
         // Controller logic/Service call/etc...
@@ -70,16 +74,20 @@ public exampleControllerEndpoint(req: Request, res: Response) {
 
 **Example**
 ~~~~
-// req.query = { 'reqStr': 'fake-string', 'reqBool': 'true', 'reqInt': '10' }
+// req.query = { 'reqStr': 'fake-string', 'reqBool': 'true', 'reqNum': '10' }
+let expectedParam = new EndpointParams(); 
+expectedParam.requiredStrings = ['reqStr'];
+expectedParam.requiredBooleans = ['reqBool'];
+expectedParam.requiredNumbers = ['reqNum'];
+expectedParam.optionalBooleans = ['optBool'];
+expectedParam.optionalNumbers = ['optNum'];
+
 let params = HandleQueryParams(
      req,
-     ['reqStr'],
-     ['reqBool'],
-     ['reqInt'],
-     ['optBool'],
-     ['optInt'],
+     expectedParam
 );
 
+console.log(params);
 /**
 params = {
     reqStr: 'fake-string',
@@ -90,7 +98,7 @@ params = {
 */
 ~~~~
 
-### <a name="models"></a> Error Models
+### <a name="err-models"></a> Error Models
 Controlli introduces some models to help with error and response handling.
 - ArgumentNullError
 - ArgumentError

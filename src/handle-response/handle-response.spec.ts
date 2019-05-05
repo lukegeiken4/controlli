@@ -1,7 +1,5 @@
 import { Response } from 'express';
-import { 
-    HandleResponse
-} from './index'
+import { HandleResponse } from './index'
 import { ArgumentError, ArgumentNullError, NotFoundError } from '..';
 
 describe("Method HandleResponse: ", () => {

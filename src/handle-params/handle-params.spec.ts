@@ -1,29 +1,31 @@
 import { Response } from 'express';
+import { HandleQueryParams } from './index'
 import { 
-    HandleQueryParams
-} from './index'
-import { ArgumentError, ArgumentNullError, NotFoundError } from '..';
+    ArgumentError,
+    ArgumentNullError,
+    EndpointParams 
+} from '../models';
 
 describe("Method HandleQueryParams:", () => {
     let req: any = {};
+    let endpointParams: EndpointParams;
     let test: any;
 
     beforeEach(() => {
         req.query = {};
+        endpointParams = new EndpointParams();
     });
 
     describe("When requiredStrParams", () => {
-        describe("are not present in query", () => {
-            beforeEach(() => {
-                test = () => { 
-                    HandleQueryParams(
-                        req,
-                        ['req-str-param'],
-                        [],
-                        []);
-                }
-            });
-    
+        beforeEach(() => {
+            endpointParams.requiredStrings = ['req-str-param'];
+            test = () => { 
+                return HandleQueryParams(
+                    req,
+                    endpointParams);
+            }
+        });
+        describe("are not present in query", () => {    
             it("should throw ArgumentNullError", () => {
                expect(() => { test() }).toThrow(new ArgumentNullError('req-str-param'));
             });
@@ -32,15 +34,8 @@ describe("Method HandleQueryParams:", () => {
         describe("are present in query", () => {
             beforeEach(() => {
                 req.query['req-str-param'] = 'string-param';
-                test = () => { 
-                    return HandleQueryParams(
-                        req,
-                        ['req-str-param'],
-                        [],
-                        []);
-                }
             });
-    
+            
             it("should not throw ArgumentNullError", () => {
                expect(() => { test() }).not.toThrow(new ArgumentNullError('req-str-param'));
             });
@@ -53,33 +48,22 @@ describe("Method HandleQueryParams:", () => {
     });
 
     describe("When requiredBoolParams", () => {
-        describe("are not present in query", () => {
-            beforeEach(() => {
-                test = () => { 
-                    HandleQueryParams(
-                        req,
-                        [],
-                        ['req-bool-param'],
-                        []);
-                }
-            });
+        beforeEach(() => {
+            test = () => {
+                endpointParams.requiredBooleans = ['req-bool-param'];
+                return HandleQueryParams(
+                    req,
+                    endpointParams);
+            }
+        });
 
+        describe("are not present in query", () => {
             it("should throw ArgumentNullError", () => {
-            expect(() => { test() }).toThrow(new ArgumentNullError('req-bool-param'));
+                expect(() => { test() }).toThrow(new ArgumentNullError('req-bool-param'));
             });
         });
 
         describe("are present in query", () => {
-            beforeEach(() => {
-                test = () => { 
-                    return HandleQueryParams(
-                        req,
-                        [],
-                        ['req-bool-param'],
-                        []);
-                }
-            });
-
             describe("is valid boolean: 'true'", () => {
                 beforeEach(() => {
                     req.query['req-bool-param'] = 'true';
@@ -120,34 +104,22 @@ describe("Method HandleQueryParams:", () => {
     });
 
     describe("When requiredIntParams", () => {
-        describe("are not present in query", () => {
-            beforeEach(() => {
-                test = () => { 
-                    HandleQueryParams(
-                        req,
-                        [],
-                        [],
-                        ['req-num-param']);
-                }
-            });
+        beforeEach(() => {
+            test = () => { 
+                endpointParams.requiredNumbers = ['req-num-param'];
+                return HandleQueryParams(
+                    req,
+                    endpointParams);
+            }
+        });
 
+        describe("are not present in query", () => {
             it("should throw ArgumentNullError", () => {
-            expect(() => { test() }).toThrow(new ArgumentNullError('req-num-param'));
+                expect(() => { test() }).toThrow(new ArgumentNullError('req-num-param'));
             });
         });
 
         describe("are present in query", () => {
-            beforeEach(() => {
-                req.query['req-num-param'] = '10';
-                test = () => { 
-                    return HandleQueryParams(
-                        req,
-                        [],
-                        [],
-                        ['req-num-param']);
-                }
-            });
-
             describe("is valid non-decimal int", () => {
                 beforeEach(() => {
                     req.query['req-num-param'] = '10';
@@ -218,35 +190,22 @@ describe("Method HandleQueryParams:", () => {
     });
 
     describe("When optionalBoolParams", () => {
-        describe("are not present in query", () => {
-            beforeEach(() => {
-                test = () => { 
-                    HandleQueryParams(
-                        req,
-                        [],
-                        [],
-                        [],
-                        ['opt-bool-param']);
-                }
-            });
+        beforeEach(() => {
+            test = () => {
+                endpointParams.optionalBooleans = ['opt-bool-param'];
+                return HandleQueryParams(
+                    req,
+                    endpointParams);
+            }
+        });
 
+        describe("are not present in query", () => {
             it("should not throw ArgumentNullError", () => {
                 expect(() => { test() }).not.toThrow(new ArgumentNullError('opt-bool-param'));
             });
         });
 
         describe("are present in query", () => {
-            beforeEach(() => {
-                test = () => { 
-                    return HandleQueryParams(
-                        req,
-                        [],
-                        [],
-                        [],
-                        ['opt-bool-param']);
-                }
-            });
-
             describe("is valid boolean: 'true'", () => {
                 beforeEach(() => {
                     req.query['opt-bool-param'] = 'true';
@@ -286,38 +245,23 @@ describe("Method HandleQueryParams:", () => {
         });
     });
 
-    describe("When optionalIntParams", () => {
-        describe("are not present in query", () => {
-            beforeEach(() => {
-                test = () => { 
-                    HandleQueryParams(
-                        req,
-                        [],
-                        [],
-                        [],
-                        [],
-                        ['opt-num-param']);
-                }
-            });
+    describe("When optionalIntParams", () => {  
+        beforeEach(() => {
+            test = () => {
+                endpointParams.optionalNumbers = ['opt-num-param'];
+                return HandleQueryParams(
+                    req,
+                    endpointParams);
+            }
+        });
 
+        describe("are not present in query", () => {
             it("should not throw ArgumentNullError", () => {
                 expect(() => { test() }).not.toThrow(new ArgumentNullError('opt-num-param'));
             });
         });
 
         describe("are present in query", () => {
-            beforeEach(() => {
-                test = () => { 
-                    return HandleQueryParams(
-                        req,
-                        [],
-                        [],
-                        [],
-                        [],
-                        ['opt-num-param']);
-                }
-            });
-
             describe("is valid non-decimal int", () => {
                 beforeEach(() => {
                     req.query['opt-num-param'] = '10';
