@@ -2,18 +2,23 @@ import { Response } from 'express';
 import { HandleQueryParams } from './index'
 import { 
     ArgumentError,
-    ArgumentNullError,
-    EndpointParams 
+    ArgumentNullError 
 } from '../models';
 
 describe("Method HandleQueryParams:", () => {
     let req: any = {};
-    let endpointParams: EndpointParams;
+    let endpointParams: {
+        requiredStrings?: string[],
+        requiredBooleans?: string[],
+        requiredNumbers?: string[],
+        optionalBooleans?: string[],
+        optionalNumbers?: string[],
+    };
     let test: any;
 
     beforeEach(() => {
         req.query = {};
-        endpointParams = new EndpointParams();
+        endpointParams = {};
     });
 
     describe("When requiredStrParams", () => {

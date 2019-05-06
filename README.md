@@ -53,17 +53,15 @@ If your params are expected to be booleans or numbers and are not, it will throw
 // NOTE: Written in Typescript
 public exampleControllerEndpoint(req: Request, res: Response) {
     HandleResponse(res, new Promise((resolve, reject) => {
-        // EndpointParams object constructor takes object with nullable properties
-        // Go ahead and set whatever you are expecting from the request query params
         let params = HandleQueryParams(
-            req,   // Controller Request
-            new EndpointParams({
+            req,    // Controller Request
+            {       // Give your expected/optional query
                 requiredStrings?: string[],
                 requiredBooleans?: string[],
                 requiredNumbers?: string[],
                 optionalBooleans?: string[],
                 optionalNumbers?: string[],
-            })
+            }
         );
         
         // Controller logic/Service call/etc...
@@ -77,14 +75,14 @@ public exampleControllerEndpoint(req: Request, res: Response) {
 ~~~~
 // req.query = { 'reqStr': 'fake-string', 'reqBool': 'true', 'reqNum': '10' }
 let params = HandleQueryParams(
-     req,
-     new EndpointParams({
+    req,
+    {
         requiredStrings: ['reqStr'],
         requiredBooleans: ['reqBool'],
         requiredNumbers: ['reqNum'],
         optionalBooleans: ['optBool'],
         optionalNumbers: ['optNum'],
-    })
+    }
 );
 
 console.log(params);

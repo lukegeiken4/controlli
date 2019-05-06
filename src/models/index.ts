@@ -1,4 +1,3 @@
-import { EndpointParams } from '../models/params';
 import { 
     ArgumentNullError,
     ArgumentError,
@@ -8,6 +7,5 @@ import {
 export {
     ArgumentNullError,
     ArgumentError,
-    NotFoundError,
-    EndpointParams
+    NotFoundError
 }

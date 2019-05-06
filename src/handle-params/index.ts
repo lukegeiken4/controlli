@@ -1,28 +1,38 @@
 import { Request } from 'express';
 import { 
     ArgumentNullError,
-    ArgumentError,
-    EndpointParams
+    ArgumentError
 } from '../models';
 
 /**
  * Handles the GET query parameters coming with the request
  * @param req Express request to handle
- * @param endpointParams Define what required and optional params are expected
+ * @param fields Define what required and optional params are expected
  * @returns Query params transformed to their correct type
  */
 export function HandleQueryParams(
     req: Request,
-    endpointParams: EndpointParams): any
-{
-    var params: {} = req.query;
+    fields: {
+        requiredStrings?: string[],
+        requiredBooleans?: string[],
+        requiredNumbers?: string[],
+        optionalBooleans?: string[],
+        optionalNumbers?: string[],
+}): any {
+
+    const params: {} = req.query;
+    const requiredStrings = fields.requiredStrings || [];
+    const requiredBooleans = fields.requiredBooleans || [];
+    const requiredNumbers = fields.requiredNumbers || [];
+    const optionalBooleans = fields.optionalBooleans || [];
+    const optionalNumbers = fields.optionalNumbers || [];
 
     // Check to make sure required params are present
     let requiredParams: string[] = [];
     requiredParams = requiredParams.concat(
-        endpointParams.requiredStrings,
-        endpointParams.requiredBooleans,
-        endpointParams.requiredNumbers)
+        requiredStrings,
+        requiredBooleans,
+        requiredNumbers)
         .filter((item: any, i: any, arr: any) => item && !!arr && arr.indexOf(item) === i);
 
     for(let key in requiredParams)
@@ -36,8 +46,8 @@ export function HandleQueryParams(
     // Check/Convert the required BOOL vals
     let boolParams: string[] = [];
     boolParams = boolParams.concat(
-        endpointParams.requiredBooleans,
-        endpointParams.optionalBooleans)
+        requiredBooleans,
+        optionalBooleans)
         .filter((item: any, i: any, arr: any) => item && !!arr && arr.indexOf(item) === i);
     boolParams = filterObject(params, boolParams);
     for (let boolParam in boolParams) {
@@ -55,8 +65,8 @@ export function HandleQueryParams(
     // Check/Convert the required INT vals
     let numParams: string[] = [];
     numParams = numParams.concat(
-        endpointParams.requiredNumbers,
-        endpointParams.optionalNumbers)
+        requiredNumbers,
+        optionalNumbers)
         .filter((item: any, i: any, arr: any) => item && !!arr && arr.indexOf(item) === i);
     numParams = filterObject(params, numParams);
     for (let numParam in numParams) {

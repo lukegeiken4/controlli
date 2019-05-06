@@ -3,14 +3,12 @@ import { HandleQueryParams } from './handle-params';
 import { 
     ArgumentNullError,
     ArgumentError,
-    NotFoundError,
-    EndpointParams
+    NotFoundError
 } from './models';
 
 export {
     HandleResponse,
     HandleQueryParams,
-    EndpointParams,
     ArgumentNullError,
     ArgumentError,
     NotFoundError
